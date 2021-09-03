@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<script>
+    var array = {{ datatable| tojson }};
+
+    webix.ready(() => {
+        webix.ui({
+            rows: [
+                {
+                    view: "datatable",
+                    columns:[
+                        {id: "title", header: "제목", fillspace: true},
+                        {id: "release_year", header: "개봉 년도", width: 150},
+                        {id: "rating", header: "평점", 쟝소: 200}
+                    ],
+                    url: "http://127.0.0.1:5000/test"
+                },
+                {
+                    view: "datatable",
+                    columns: [
+                        {id: "title", header: "제목2", fillspace: true},
+                        {id: "release_year", header: "개봉 년도2", width: 150},
+                        {id: "rating", header: "평점2", 쟝소: 200}
+                    ],
+                    data: array
+                }
+            ]
+        })
+    })
+</script>
+{% endblock %}
